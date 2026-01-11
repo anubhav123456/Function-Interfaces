@@ -238,7 +238,37 @@ public class UnaryOperatorExample {
 }
 ```
 ---
+## 9️⃣ BinaryOperator<T>
 
+### 👉 Takes **two inputs of same type**, returns **same type**
+
+➡️ Special case of `BiFunction<T, T, T>`
+
+```java
+@FunctionalInterface
+public interface BinaryOperator<T> extends BiFunction<T, T, T> {
+}
+```
+
+### When to use?
+
+✔ When **both inputs and output are of same type**
+
+### Example
+
+```java
+import java.util.function.BinaryOperator;
+
+public class BinaryOperatorExample {
+    public static void main(String[] args) {
+
+        BinaryOperator<Integer> sum = (a, b) -> a + b;
+
+        System.out.println(sum.apply(10, 20)); // 30
+    }
+}
+```
+---
 
 # 🔗 CHAINING CONCEPTS (Very Important)
 
