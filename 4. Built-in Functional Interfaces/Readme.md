@@ -518,11 +518,11 @@ public class BinaryOperatorChaining {
 
 ## 🔥 INTERVIEW TIP
 
-> **Supplier → gives**
-> **Consumer → takes**
-> **Predicate → checks**
-> **Function → converts**
-> **UnaryOperator → modifies**
-> **BinaryOperator → combines**
+* > **Supplier → gives**
+* > **Consumer → takes**
+* > **Predicate → checks**
+* > **Function → converts**
+* > **UnaryOperator → modifies**
+* > **BinaryOperator → combines**
 
 ---
