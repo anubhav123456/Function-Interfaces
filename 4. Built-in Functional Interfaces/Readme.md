@@ -415,26 +415,114 @@ public class BiPredicateChaining {
 
 ---
 
-# 🧠 Interview Summary (Very Useful)
+## 7️⃣ UnaryOperator Chaining (`andThen`)
 
-| Interface   | Input | Output  |
-| ----------- | ----- | ------- |
-| Consumer    | 1     | void    |
-| BiConsumer  | 2     | void    |
-| Supplier    | 0     | 1       |
-| Function    | 1     | 1       |
-| BiFunction  | 2     | 1       |
-| Predicate   | 1     | boolean |
-| BiPredicate | 2     | boolean |
+👉 Executes **multiple UnaryOperators sequentially**
+👉 Output of first becomes input of next
+
+```java
+import java.util.function.UnaryOperator;
+
+public class UnaryOperatorChaining {
+    public static void main(String[] args) {
+
+        UnaryOperator<Integer> multiplyBy2 = n -> n * 2;
+        UnaryOperator<Integer> add10 = n -> n + 10;
+
+        System.out.println(multiplyBy2.andThen(add10).apply(5));
+    }
+}
+```
+
+📌 Calculation:
+
+```
+5 → 10 → 20
+```
 
 ---
 
-## 🔥 INTERVIEW TIP (Memorization Trick)
+## 8️⃣ UnaryOperator Chaining (`compose`)
 
-> **Supplier → gives
-> Consumer → takes
-> Predicate → checks
-> Function → converts**
+👉 **Reverse order execution**
+
+```java
+import java.util.function.UnaryOperator;
+
+public class UnaryOperatorCompose {
+    public static void main(String[] args) {
+
+        UnaryOperator<Integer> multiplyBy2 = n -> n * 2;
+        UnaryOperator<Integer> add10 = n -> n + 10;
+
+        System.out.println(multiplyBy2.compose(add10).apply(5));
+    }
+}
+```
+
+📌 Calculation:
+
+```
+5 → 15 → 30
+```
 
 ---
 
+## 9️⃣ BinaryOperator Chaining (`andThen`)
+
+👉 First `BinaryOperator` executes
+👉 Result goes to a **Function** (not another BinaryOperator)
+
+⚠ **Important Interview Point**
+`BinaryOperator.andThen()` returns a **Function**, not a BinaryOperator.
+
+```java
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+
+public class BinaryOperatorChaining {
+    public static void main(String[] args) {
+
+        BinaryOperator<Integer> sum = (a, b) -> a + b;
+        Function<Integer, Integer> square = n -> n * n;
+
+        System.out.println(sum.andThen(square).apply(3, 4));
+    }
+}
+```
+
+📌 Calculation:
+
+```
+(3 + 4) = 7 → 49
+```
+
+---
+
+
+# 🧠 Interview Summary
+
+| Interface      | Input | Output    |
+| -------------- | ----- | --------- |
+| Consumer       | 1     | void      |
+| BiConsumer     | 2     | void      |
+| Supplier       | 0     | 1         |
+| Function       | 1     | 1         |
+| BiFunction     | 2     | 1         |
+| UnaryOperator  | 1     | Same type |
+| BinaryOperator | 2     | Same type |
+| Predicate      | 1     | boolean   |
+| BiPredicate    | 2     | boolean   |
+
+---
+
+## 🔥 INTERVIEW TIP
+
+> **Supplier → gives**
+> **Consumer → takes**
+> **Predicate → checks**
+> **Function → converts**
+> **UnaryOperator → modifies**
+> **BinaryOperator → combines**
+
+---
