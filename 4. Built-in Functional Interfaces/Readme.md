@@ -1,4 +1,5 @@
 
+---
 # Built-in Functional Interfaces
 * Defined in package `java.util.function`
 
@@ -202,8 +203,42 @@ public class BiPredicateExample {
     }
 }
 ```
+---
 
 ---
+
+## 8️⃣ UnaryOperator<T>
+
+### 👉 Takes **one input**, returns **same type output**
+
+➡️ Special case of `Function<T, T>`
+
+```java
+@FunctionalInterface
+public interface UnaryOperator<T> extends Function<T, T> {
+}
+```
+
+### When to use?
+
+✔ When **input type == output type**
+
+### Example
+
+```java
+import java.util.function.UnaryOperator;
+
+public class UnaryOperatorExample {
+    public static void main(String[] args) {
+
+        UnaryOperator<Integer> square = n -> n * n;
+
+        System.out.println(square.apply(5)); // 25
+    }
+}
+```
+---
+
 
 # 🔗 CHAINING CONCEPTS (Very Important)
 
@@ -364,3 +399,13 @@ public class BiPredicateChaining {
 | BiPredicate | 2     | boolean |
 
 ---
+
+## 🔥 INTERVIEW TIP (Memorization Trick)
+
+> **Supplier → gives
+> Consumer → takes
+> Predicate → checks
+> Function → converts**
+
+---
+
